@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Caixa Eletrônico</title>
+
+	<script>
+
+		var saldo = 100.5; //Variavel Global
+		var senha = 3589;
+
+		function inicio() {
+			//ESCOPO
+			//Variavel Local
+			var escolha = parseInt(prompt('Selecione uma opção \n 1.) Saldo \n 2.) Extrato \n 3.) Saque \n 4.) Depósito \n 5.) Transferência \n 6.) Sair '));
+
+			/* if (escolha === 1) {
+				ver_saldo();
+			} else if (escolha === 2) {
+				fazer_deposito();
+			} else if (escolha === 3) {
+				fazer_saque();
+			} else if (escolha === 4) {
+				sair();
+			} else {
+				erro();
+			} */
+
+			switch (escolha) {
+				case 1:
+					ver_saldo();
+				case 2:
+					extrato();
+				case 3:
+					fazer_saque();
+				case 4:
+					fazer_deposito();
+				case 5:
+					transferencia();
+				case 6:
+					sair();
+					break;
+
+				default:
+					erro();
+
+			}
+		}
+
+
+		//1
+		function ver_saldo() {
+
+			acessar();
+
+			alert('Seu saldo atual é: ' + saldo);
+			inicio();
+		}
+
+		//2
+		function extrato() {
+
+			acessar();
+
+			alert("EXTRATRATO \n --------------------------- \n Deposito \n +R$300,00 \n \n Compra\n -R$300,00 \n CHANEL INDUSTRIA E COMERCIO DE GRINALDAS LTDA \n ")
+			inicio();
+		}
+
+		//3
+		function fazer_saque() {
+
+			acessar();
+
+			var saque = parseFloat(prompt('Qual o valor para saque?'));
+
+			while (saque > saldo || saque <= 0 ) {
+				alert("Operação não autorizada.");
+				saque = parseFloat(prompt('Qual o valor para saque?'));
+			}
+
+
+			if (isNaN(saque) || saque === '') {
+				alert('Por favor, informe um número.');
+				fazer_saque();
+			} else {
+				saldo -= saque;
+				//saldo = saldo - saque;
+				alert('Seu saldo atual é: ' + saldo);
+				inicio();
+			}
+		}
+
+		//4
+		function fazer_deposito() {
+
+			acessar();
+
+			var deposito = parseFloat(prompt('Qual o valor para depósito?'));
+
+			// Not a Number --> Isso é um não-número?
+			if (isNaN(deposito) || deposito === '') {
+				alert('Por favor, informe um número.');
+				fazer_deposito();
+			} else if (desposito < 0 || despoito === 0) {
+				alert("Operação não autorizada.");
+				fazer_deposito();
+			}
+			else {
+				saldo += deposito;
+				alert("Deposito realizado com sucesso!")
+				//saldo = saldo + deposito;
+				alert('Seu saldo atual é: ' + saldo);
+				inicio();
+			}
+		}
+
+		//5
+		function transferencia() {
+
+			acessar();
+
+			var conta = parseInt(prompt('Informe o número da conta que ira receber a transferencia: '))
+			var trans = parseFloat(prompt('Qual o valor deseja transferir?'));
+
+			while (trans > saldo || trans === 0) {
+				alert("Operação não autorizada.");
+				trans = parseFloat(prompt('Qual o valor deseja transferir?'));
+			}
+
+
+			if (isNaN(trans) || trans === '' || isNaN(conta) || conta === '') {
+				alert('Por favor, informe um número.');
+				transferencia();
+			} else {
+				saldo -= trans;
+				alert("Transferência realizada com sucesso!")
+				alert('Seu saldo atual é: ' + saldo);
+				inicio();
+			}
+		}
+
+		//6
+		function sair() {
+
+			var confirma = confirm('Você deseja sair?');
+			if (confirma) {
+				alert(nome + ", foi um prazer ter você por aqui!");
+				window.close();
+			} else {
+				inicio();
+			}
+		}
+
+		function erro() {
+			alert('Por favor, informe um número entre 1 e 4.');
+			inicio();
+		}
+
+		function acessar() {
+
+			var acesso = parseInt(prompt("Informe a senha para acessar: "))
+			while (acesso != senha) {
+				acesso = prompt("Senha incorreta, informe novamente:");
+			}
+		}
+
+
+		var nome = prompt("Informe seu nome: ")
+		alert("Olá " + nome + " é um pazer ter você por aqui!")
+
+		inicio();
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
