@@ -76,7 +76,7 @@
 
 			var saque = parseFloat(prompt('Qual o valor para saque?'));
 
-			while (saque > saldo || saque <= 0 ) {
+			while (saque > saldo || saque <= 0) {
 				alert("Operação não autorizada.");
 				saque = parseFloat(prompt('Qual o valor para saque?'));
 			}
@@ -97,20 +97,21 @@
 		function fazer_deposito() {
 
 			acessar();
-
+ 
 			var deposito = parseFloat(prompt('Qual o valor para depósito?'));
 
+			while (deposito <= 0) {
+				alert("Operação não autorizada.");
+				deposito = parseFloat(prompt('Qual o valor para depósito?'));
+			}
+		
 			// Not a Number --> Isso é um não-número?
 			if (isNaN(deposito) || deposito === '') {
 				alert('Por favor, informe um número.');
 				fazer_deposito();
-			} else if (desposito < 0 || despoito === 0) {
-				alert("Operação não autorizada.");
-				fazer_deposito();
-			}
-			else {
+			} else {
 				saldo += deposito;
-				alert("Deposito realizado com sucesso!")
+				alert("Deposito realizado com sucesso!");
 				//saldo = saldo + deposito;
 				alert('Seu saldo atual é: ' + saldo);
 				inicio();
@@ -125,7 +126,7 @@
 			var conta = parseInt(prompt('Informe o número da conta que ira receber a transferencia: '))
 			var trans = parseFloat(prompt('Qual o valor deseja transferir?'));
 
-			while (trans > saldo || trans === 0) {
+			while (trans > saldo || trans <= 0 ) {
 				alert("Operação não autorizada.");
 				trans = parseFloat(prompt('Qual o valor deseja transferir?'));
 			}
@@ -161,17 +162,24 @@
 
 		function acessar() {
 
-			var acesso = parseInt(prompt("Informe a senha para acessar: "))
+			var acesso = parseInt(prompt("Informe a senha para acessar: "));
 			while (acesso != senha) {
 				acesso = prompt("Senha incorreta, informe novamente:");
 			}
 		}
 
 
-		var nome = prompt("Informe seu nome: ")
-		alert("Olá " + nome + " é um pazer ter você por aqui!")
+
+		var nome = prompt("Informe seu nome: ");
+
+		while (!isNaN(nome)) {
+			nome = prompt("Erro, infore seu nome novamente: ");
+		}
+
+		alert("Olá " + nome + " é um pazer ter você por aqui!");
 
 		inicio();
+
 	</script>
 </head>
 
