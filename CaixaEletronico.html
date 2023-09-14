@@ -97,14 +97,14 @@
 		function fazer_deposito() {
 
 			acessar();
- 
+
 			var deposito = parseFloat(prompt('Qual o valor para depósito?'));
 
 			while (deposito <= 0) {
 				alert("Operação não autorizada.");
 				deposito = parseFloat(prompt('Qual o valor para depósito?'));
 			}
-		
+
 			// Not a Number --> Isso é um não-número?
 			if (isNaN(deposito) || deposito === '') {
 				alert('Por favor, informe um número.');
@@ -122,24 +122,34 @@
 		function transferencia() {
 
 			acessar();
+			
+			voltar();
 
-			var conta = parseInt(prompt('Informe o número da conta que ira receber a transferencia: '))
-			var trans = parseFloat(prompt('Qual o valor deseja transferir?'));
+			function voltar() {
 
-			while (trans > saldo || trans <= 0 ) {
-				alert("Operação não autorizada.");
-				trans = parseFloat(prompt('Qual o valor deseja transferir?'));
-			}
+				var conta = parseInt(prompt('Informe o número da conta que ira receber a transferencia: '));
+				while (isNaN(conta) || conta == null) {
+					alert('Por favor, informe um número.');
+					voltar();
+				}
+
+				var trans = parseFloat(prompt('Qual o valor deseja transferir?'));
+
+				while (trans > saldo || trans <= 0) {
+					alert("Operação não autorizada.");
+					trans = parseFloat(prompt('Qual o valor deseja transferir?'));
+				}
 
 
-			if (isNaN(trans) || trans === '' || isNaN(conta) || conta === '') {
-				alert('Por favor, informe um número.');
-				transferencia();
-			} else {
-				saldo -= trans;
-				alert("Transferência realizada com sucesso!")
-				alert('Seu saldo atual é: ' + saldo);
-				inicio();
+				while (isNaN(trans) || trans === '') {
+					alert('Por favor, informe um número.');
+					trans = parseFloat(prompt('Qual o valor deseja transferir?'));
+				} 
+					saldo -= trans;
+					alert("Transferência realizada com sucesso!")
+					alert('Seu saldo atual é: ' + saldo);
+					inicio();
+			
 			}
 		}
 
