@@ -102,6 +102,7 @@
 		function fazer_deposito() {
 
 			acessar();
+<<<<<<< HEAD
 
 			operacao_deposito();
 
@@ -125,6 +126,26 @@
 					alert('Seu saldo atual é: ' + saldo);
 					inicio();
 				}
+=======
+
+			var deposito = parseFloat(prompt('Qual o valor para depósito?'));
+
+			while (deposito <= 0) {
+				alert("Operação não autorizada.");
+				deposito = parseFloat(prompt('Qual o valor para depósito?'));
+			}
+
+			// Not a Number --> Isso é um não-número?
+			if (isNaN(deposito) || deposito === '') {
+				alert('Por favor, informe um número.');
+				fazer_deposito();
+			} else {
+				saldo += deposito;
+				alert("Deposito realizado com sucesso!");
+				//saldo = saldo + deposito;
+				alert('Seu saldo atual é: ' + saldo);
+				inicio();
+>>>>>>> 7412b718095f546d441ff2add5b5793b8f44ed81
 			}
 		}
 
@@ -132,7 +153,10 @@
 		function transferencia() {
 
 			acessar();
+			
+			voltar();
 
+<<<<<<< HEAD
 			operacao_transferencia();
 
 			function operacao_transferencia() {
@@ -144,6 +168,18 @@
 				}
 
 				var trans = parseFloat(prompt('Qual o valor deseja transferir?'));
+=======
+			function voltar() {
+
+				var conta = parseInt(prompt('Informe o número da conta que ira receber a transferencia: '));
+				while (isNaN(conta) || conta == null) {
+					alert('Por favor, informe um número.');
+					voltar();
+				}
+
+				var trans = parseFloat(prompt('Qual o valor deseja transferir?'));
+
+>>>>>>> 7412b718095f546d441ff2add5b5793b8f44ed81
 				while (trans > saldo || trans <= 0) {
 					alert("Operação não autorizada.");
 					trans = parseFloat(prompt('Qual o valor deseja transferir?'));
@@ -153,6 +189,7 @@
 				while (isNaN(trans) || trans === '') {
 					alert('Por favor, informe um número.');
 					trans = parseFloat(prompt('Qual o valor deseja transferir?'));
+<<<<<<< HEAD
 				}
 
 				saldo -= trans;
@@ -160,6 +197,14 @@
 				alert('Seu saldo atual é: ' + saldo);
 				inicio();
 
+=======
+				} 
+					saldo -= trans;
+					alert("Transferência realizada com sucesso!")
+					alert('Seu saldo atual é: ' + saldo);
+					inicio();
+			
+>>>>>>> 7412b718095f546d441ff2add5b5793b8f44ed81
 			}
 		}
 
