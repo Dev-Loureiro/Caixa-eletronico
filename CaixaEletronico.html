@@ -41,14 +41,19 @@
 			switch (escolha) {
 				case 1:
 					ver_saldo();
+					break;
 				case 2:
 					extrato();
+					break;
 				case 3:
 					fazer_saque();
+					break;
 				case 4:
 					fazer_deposito();
+					break;
 				case 5:
 					transferencia();
+					break;
 				case 6:
 					sair();
 					break;
@@ -152,55 +157,50 @@
 					operacao_transferencia();
 				}
 
+
 				var trans = parseFloat(prompt('Qual o valor deseja transferir?'));
-
-				function voltar() {
-
-					var conta = parseInt(prompt('Informe o número da conta que ira receber a transferencia: '));
-					while (isNaN(conta) || conta == null) {
-						alert('Por favor, informe um número.');
-						voltar();
-					}
-
-					var trans = parseFloat(prompt('Qual o valor deseja transferir?'));
-
-
-					while (trans > saldo || trans <= 0) {
-						alert("Operação não autorizada.");
-						trans = parseFloat(prompt('Qual o valor deseja transferir?'));
-					}
-
-
-					while (isNaN(trans) || trans === '') {
-						alert('Por favor, informe um número.');
-						trans = parseFloat(prompt('Qual o valor deseja transferir?'));
-					}
-
-					saldo -= trans;
-					alert("Transferência realizada com sucesso!")
-					alert('Seu saldo atual é: ' + saldo);
-					inicio();
-
-
+				while (trans > saldo || trans <= 0) {
+					alert("Operação não autorizada.");
+					trans = parseFloat(prompt('Qual o valor deseja transferir?'));
 				}
+
+
+				while (isNaN(trans) || trans === '') {
+					alert('Por favor, informe um número.');
+					trans = parseFloat(prompt('Qual o valor deseja transferir?'));
+				}
+
 				saldo -= trans;
 				alert("Transferência realizada com sucesso!")
 				alert('Seu saldo atual é: ' + saldo);
 				inicio();
 
+
 			}
+
+
 		}
+		
 
 		//6
 		function sair() {
 
 			var confirma = confirm('Você deseja sair?');
-			if (confirma) {
+
+			/* switch (confirma) {
+				case true: 
+				alert(nome + ", foi um prazer ter você por aqui!");
+				window.close();
+				break;
+				default: inicio();
+
+			} */
+			 if (confirma === true) {
 				alert(nome + ", foi um prazer ter você por aqui!");
 				window.close();
 			} else {
 				inicio();
-			}
+			} 
 		}
 
 		function acessar() {
